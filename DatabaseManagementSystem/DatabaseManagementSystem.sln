@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseManagementSystem", "DatabaseManagementSystem\DatabaseManagementSystem.csproj", "{FCBD31BA-C7B2-49A6-BA76-E158B57A5057}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCBD31BA-C7B2-49A6-BA76-E158B57A5057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCBD31BA-C7B2-49A6-BA76-E158B57A5057}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCBD31BA-C7B2-49A6-BA76-E158B57A5057}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCBD31BA-C7B2-49A6-BA76-E158B57A5057}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

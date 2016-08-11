@@ -6,20 +6,31 @@
         xmlns:local="clr-namespace:DatabaseManagementSystem"
         mc:Ignorable="d"
         Title="Database Manager" Height="350" Width="564" WindowStartupLocation="CenterScreen" Background="#FF3896E4" BorderBrush="#FF252323">
-    <Grid Margin="1,8,-1,-8">
-        <Button x:Name="button" Content="Login" HorizontalAlignment="Center" Height="27" Margin="220,243,221,0" VerticalAlignment="Top" Width="115" Click="button_Click" BorderBrush="Black" Background="#FF3896E4" BorderThickness="2" FontFamily="Microsoft JhengHei UI" FontSize="16" FontWeight="Bold" Foreground="White" FontStretch="Condensed" RenderTransformOrigin="0.609,0.63"/>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Center" Height="30" Margin="210,150,207,0" VerticalAlignment="Top" Width="139" BorderBrush="Black" BorderThickness="1" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center">
-            <PasswordBox.Effect>
-                <DropShadowEffect BlurRadius="12" Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}" Direction="592"/>
-            </PasswordBox.Effect>
-        </PasswordBox>
-        <TextBlock x:Name="passwordTextBlock" Height="25" Margin="185,115,181,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Center" TextAlignment="Center" Foreground="White" RenderTransformOrigin="0.5,0.5"><Run Text="Password"/><LineBreak/><Run/></TextBlock>
-        <PasswordBox x:Name="passwordBox_Copy" Height="30" Margin="210,70,207,0" VerticalAlignment="Top" Width="139" BorderBrush="Black" BorderThickness="1" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-            <PasswordBox.Effect>
-                <DropShadowEffect BlurRadius="12" Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}" Direction="592"/>
-            </PasswordBox.Effect>
-        </PasswordBox>
-        <TextBlock x:Name="passwordTextBlock_Copy" Height="25" Margin="185,35,181,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Center" TextAlignment="Center" Foreground="White" RenderTransformOrigin="0.5,0.5"><Run Text="Username"/><LineBreak/><Run/></TextBlock>
-
+    <Grid>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Name ="MenuItem_Insert" Header="_Insert" IsEnabled="False" Click="MenuItem_Insert_Click" />
+                <MenuItem Name ="MenuItem_View" Header="_View" IsEnabled="False" />
+                <MenuItem Header="_Connection" >
+                    <MenuItem Header="_Retry Connection" Click="MenuItem_Retry_Click"/>
+                </MenuItem>
+                <MenuItem Header="_Select Station" >
+                    <MenuItem Header="_Laser" Click="MenuItem_Laser_Click"/>
+                    <MenuItem Header="_3DPrinter" Click="MenuItem_3DPrinter_Click"/>
+                </MenuItem>
+            </Menu>
+            <StatusBar DockPanel.Dock="Bottom">
+                <StatusBarItem>
+                    <TextBlock Name="SelectedStation" />
+                </StatusBarItem>
+                <StatusBarItem HorizontalAlignment="Right">
+                    <TextBlock Name="ConnectionStatus" />
+                </StatusBarItem>
+            </StatusBar>
+            
+            <StackPanel></StackPanel>
+        </DockPanel>
+       
+       
     </Grid>
 </Window>

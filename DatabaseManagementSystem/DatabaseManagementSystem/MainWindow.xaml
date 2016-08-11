@@ -7,19 +7,19 @@
         mc:Ignorable="d"
         Title="Database Manager" Height="350" Width="564" WindowStartupLocation="CenterScreen" Background="#FF3896E4" BorderBrush="#FF252323">
     <Grid>
-        <Button x:Name="button" Content="Login" HorizontalAlignment="Center" Height="27" Margin="223,248,218,0" VerticalAlignment="Top" Width="115" Click="button_Click" BorderBrush="Black" Background="#FF3896E4" BorderThickness="2" FontFamily="Microsoft JhengHei UI" FontSize="16" FontWeight="Bold" Foreground="White" FontStretch="Condensed" RenderTransformOrigin="0.609,0.63"/>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Center" Height="30" Margin="211,150,206,0" VerticalAlignment="Top" Width="139" BorderBrush="Black" BorderThickness="1" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center">
+        <Button x:Name="button" Content="Login" HorizontalAlignment="Center" Height="27" Margin="405,243,36,0" VerticalAlignment="Top" Width="115" Click="button_Click" BorderBrush="Black" Background="#FF3896E4" BorderThickness="2" FontFamily="Microsoft JhengHei UI" FontSize="16" FontWeight="Bold" Foreground="White" FontStretch="Condensed" RenderTransformOrigin="0.609,0.63"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Center" Height="30" Margin="120,150,297,0" VerticalAlignment="Top" Width="139" BorderBrush="Black" BorderThickness="1" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center">
             <PasswordBox.Effect>
                 <DropShadowEffect BlurRadius="12" Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}" Direction="592"/>
             </PasswordBox.Effect>
         </PasswordBox>
         <TextBlock x:Name="passwordTextBlock" Height="25" Margin="185,110,181,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Center" TextAlignment="Center" Foreground="White" RenderTransformOrigin="0.5,0.5"><Run Text="Password"/><LineBreak/><Run/></TextBlock>
-        <PasswordBox x:Name="passwordBox_Copy" Height="30" Margin="211,60,206,0" VerticalAlignment="Top" Width="139" BorderBrush="Black" BorderThickness="1" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+        <PasswordBox x:Name="passwordBox_Copy" Height="30" Margin="70,55,347,0" VerticalAlignment="Top" Width="139" BorderBrush="Black" BorderThickness="1" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <PasswordBox.Effect>
                 <DropShadowEffect BlurRadius="12" Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}" Direction="592"/>
             </PasswordBox.Effect>
         </PasswordBox>
-        <TextBlock x:Name="passwordTextBlock_Copy" Height="25" Margin="185,25,181,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Center" TextAlignment="Center" Foreground="White" RenderTransformOrigin="0.5,0.5"><Run Text="Username"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="passwordTextBlock_Copy" Height="25" Margin="315,94,51,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" FontSize="16" FontFamily="Microsoft YaHei UI" HorizontalAlignment="Center" TextAlignment="Center" Foreground="White" RenderTransformOrigin="0.5,0.5"><Run Text="Username"/><LineBreak/><Run/></TextBlock>
 
     </Grid>
 </Window>

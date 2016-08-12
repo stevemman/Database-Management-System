@@ -40,12 +40,14 @@ namespace DatabaseManagementSystem
                 conn.Open();
                 DatabaseManagementSystem.NotificationWindow nw = new NotificationWindow("Connection successful!");
                 nw.Show();
+                SetConnection("Successful");
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
                 DatabaseManagementSystem.NotificationWindow nw = new NotificationWindow("Connection failed!");
                 nw.Show();
+                SetConnection("Failed");
             }
         }
 
@@ -54,7 +56,10 @@ namespace DatabaseManagementSystem
             SelectedStation.Text = "Station | " + v;
         }
 
-        private void SetConnection
+        private void SetConnection(string v)
+        {
+            ConnectionStatus.Text = "Connection | " + v;
+        }
 
         private void EnableMenu()
         {

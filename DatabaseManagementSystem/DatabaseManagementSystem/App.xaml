@@ -1,8 +1,7 @@
-﻿<Application x:Class="DatabaseManagementSystem.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:DatabaseManagementSystem"
-             StartupUri="MainWindow.xaml">
+﻿<Application x:Class="WPFPageSwitch.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    StartupUri="PageSwitcher.xaml">
     <Application.Resources>
          
     </Application.Resources>

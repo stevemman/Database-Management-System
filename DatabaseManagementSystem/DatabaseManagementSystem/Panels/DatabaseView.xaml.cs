@@ -12,21 +12,29 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace DatabaseManagementSystem
+namespace WPFPageSwitch
 {
     /// <summary>
-    /// Interaction logic for DatabaseEntry.xaml
+    /// Interaction logic for DatabaseView.xaml
     /// </summary>
-    public partial class DatabaseEntry : Window
+    public partial class DatabaseView : UserControl, ISwitchable
     {
-        public DatabaseEntry()
+        WPFPageSwitch.MainWindow mw;
+
+        public DatabaseView( WPFPageSwitch.MainWindow mw )
         {
             InitializeComponent();
+            this.mw = mw;
         }
 
-        private void button_Insert_Click(object sender, RoutedEventArgs e)
+        public void UtilizeState(object state)
         {
+            throw new NotImplementedException();
+        }
 
+        private void button_Back_Click(object sender, RoutedEventArgs e)
+        {
+            Switcher.Switch(mw);
         }
     }
 }

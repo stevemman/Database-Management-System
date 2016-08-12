@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="WPFPageSwitch.DatabaseView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="640" d:DesignHeight="480" Width="800" Height="600">
+    <Grid>
+        <Button x:Name="button_Back" Content="Back" HorizontalAlignment="Left" Margin="320,240,0,0" VerticalAlignment="Top" Width="160" Height="80" FontFamily="Microsoft JhengHei UI" FontSize="29.333" Click="button_Back_Click"/>
+
+    </Grid>
+</UserControl>

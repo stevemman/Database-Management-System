@@ -1,0 +1,56 @@
+﻿<UserControl x:Name="Welcome_Screen" x:Class="WPFPageSwitch.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignWidth="640" d:DesignHeight="480" Width="800" Height="600">
+    <Grid>
+        <DockPanel Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}">
+            <StatusBar DockPanel.Dock="Bottom">
+                <StatusBarItem>
+                    <TextBlock Name="SelectedStation" />
+                </StatusBarItem>
+                <StatusBarItem HorizontalAlignment="Right">
+                    <TextBlock Name="ConnectionStatus" />
+                </StatusBarItem>
+            </StatusBar>
+
+            <StackPanel DockPanel.Dock="Left" Width="200" Margin="0,62,0,0">
+                <Button x:Name="Station_Button" VerticalAlignment="Top" Height="98" Click="Station_Button_Click" FontFamily="Microsoft JhengHei UI" FontSize="21.333" Margin="20,0,0,0">
+                    <StackPanel>
+                        <Image Source="/Images/select-station.png" Height="31" Width="49" />
+                        <TextBlock><Run Text="Select station"/></TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Width="400" Margin="0,142,0,0">
+                <Button x:Name="Insert_Button" VerticalAlignment="Top" Height="98" Margin="80,0" IsEnabled="False" Click="Insert_Button_Click" FontFamily="Microsoft JhengHei UI" FontSize="26.667">
+                    <StackPanel>
+                        <Image Source="/Images/insert.png" Height="31" Width="49" />
+                        <TextBlock TextAlignment="Center"><Run Text="Insert"/></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="View_Button" Height="101" Margin="80,39,80,10" IsEnabled="False" Click="View_Button_Click" FontFamily="Microsoft JhengHei UI" FontSize="26.667">
+                    <StackPanel>
+                        <Image Source="/Images/view.png" Height="31" Width="49" />
+                        <TextBlock TextAlignment="Center"><Run Text="View"/></TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <StackPanel  DockPanel.Dock="Right" Width="200" Margin="0,62,0,0">
+                <Button VerticalAlignment="Top" Height="98" FontFamily="Microsoft JhengHei UI" FontSize="18.667" Margin="0,0,20,0">
+                    <StackPanel>
+                        <Image Source="/Images/retry.png" Height="31" Width="49" />
+                        <TextBlock><Run Text="Retry connection"/></TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+        </DockPanel>
+
+
+    </Grid>
+</UserControl>

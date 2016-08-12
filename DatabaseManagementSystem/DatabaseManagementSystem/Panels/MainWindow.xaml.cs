@@ -13,17 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DatabaseManagementSystem
+namespace WPFPageSwitch
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : UserControl, ISwitchable
     {
-        MySql.Data.MySqlClient.MySqlConnection conn;
+        public MySql.Data.MySqlClient.MySqlConnection conn;
+        public String Station;
 
         public MainWindow()
         {
             InitializeComponent();
             ConnectToDatabase();
-            SetStation("No station selected");
+            SetStation(); //default
         }
 
         public void ConnectToDatabase()
@@ -31,29 +32,34 @@ namespace DatabaseManagementSystem
             string myConnectionString;
             
             myConnectionString = "server=127.0.0.1;uid=root;" +
-                "pwd=;database=test2;";
+                "pwd=;database=waterHole;";
 
             try
             {
                 conn = new MySql.Data.MySqlClient.MySqlConnection();
                 conn.ConnectionString = myConnectionString;
                 conn.Open();
-                DatabaseManagementSystem.NotificationWindow nw = new NotificationWindow("Connection successful!");
-                nw.Show();
+ 
                 SetConnection("Successful");
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
                 MessageBox.Show(ex.Message);
-                DatabaseManagementSystem.NotificationWindow nw = new NotificationWindow("Connection failed!");
-                nw.Show();
+
                 SetConnection("Failed");
             }
         }
 
-        private void SetStation(string v)
+        public void SetStation() //default
         {
+            SelectedStation.Text = "Station | No station selected";
+        }
+
+        public void SetStation(string v)
+        {
+            Station = v;
             SelectedStation.Text = "Station | " + v;
+            EnableButtons();
         }
 
         private void SetConnection(string v)
@@ -61,33 +67,30 @@ namespace DatabaseManagementSystem
             ConnectionStatus.Text = "Connection | " + v;
         }
 
-        private void EnableMenu()
+        private void EnableButtons()
         {
-            MenuItem_Insert.IsEnabled = true;
-            MenuItem_View.IsEnabled = true;
+            Insert_Button.IsEnabled = true;
+            View_Button.IsEnabled = true;
         }
 
-        private void MenuItem_Insert_Click(object sender, RoutedEventArgs e)
+         public void UtilizeState(object state)
         {
-            DatabaseManagementSystem.DatabaseEntry de = new DatabaseEntry();
-            de.Show();
+            throw new NotImplementedException();
         }
 
-        private void MenuItem_Laser_Click(object sender, RoutedEventArgs e)
+        private void Insert_Button_Click(object sender, RoutedEventArgs e)
         {
-            EnableMenu();
-            SetStation("Laser");
+            Switcher.Switch(new DatabaseEntry(this));
         }
 
-        private void MenuItem_3DPrinter_Click(object sender, RoutedEventArgs e)
+        private void View_Button_Click(object sender, RoutedEventArgs e)
         {
-            EnableMenu();
-            SetStation("3DPrinter");
+            Switcher.Switch(new DatabaseView(this));
         }
 
-        private void MenuItem_Retry_Click(object sender, RoutedEventArgs e)
+        private void Station_Button_Click(object sender, RoutedEventArgs e)
         {
-            ConnectToDatabase();
+            Switcher.Switch(new StationSelector(this));
         }
     }
 }

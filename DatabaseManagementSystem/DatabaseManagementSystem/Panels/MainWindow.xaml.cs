@@ -31,8 +31,8 @@ namespace WPFPageSwitch
         {
             string myConnectionString;
             
-            myConnectionString = "server=127.0.0.1;uid=root;" +
-                "pwd=;database=waterHole;";
+            myConnectionString = "server=127.0.0.1;uid=admin;" +
+                "pwd=;database=waterhole;";
 
             try
             {

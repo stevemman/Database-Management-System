@@ -6,7 +6,8 @@
         mc:Ignorable="d"
         d:DesignWidth="640" d:DesignHeight="480" Width="800" Height="600">
     <Grid>
-        <Button x:Name="button_Back" Content="Back" HorizontalAlignment="Left" Margin="320,240,0,0" VerticalAlignment="Top" Width="160" Height="80" FontFamily="Microsoft JhengHei UI" FontSize="29.333" Click="button_Back_Click"/>
+        <Button x:Name="button_Back" Content="Back" HorizontalAlignment="Left" Margin="315,0,0,0" VerticalAlignment="Top" Width="160" Height="80" FontFamily="Microsoft JhengHei UI" FontSize="29.333" Click="button_Back_Click"/>
+        <DataGrid x:Name="dataGrid" Margin="35,105,35,0" ItemsSource="{Binding}" ColumnWidth="*" VerticalAlignment="Top" Height="485"/>
 
     </Grid>
 </UserControl>

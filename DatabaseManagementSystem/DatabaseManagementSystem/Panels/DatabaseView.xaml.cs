@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace WPFPageSwitch
 {
@@ -20,11 +22,35 @@ namespace WPFPageSwitch
     public partial class DatabaseView : UserControl, ISwitchable
     {
         WPFPageSwitch.MainWindow mw;
+       
 
         public DatabaseView( WPFPageSwitch.MainWindow mw )
         {
             InitializeComponent();
+            View();
             this.mw = mw;
+        }
+
+        private void View()
+        {
+            string myConnectionString = "server=127.0.0.1;uid=admin;" +
+                "pwd=;database=waterhole;";
+            try
+            {
+                MySqlConnection connection = new MySqlConnection(myConnectionString);
+
+                string sql = "SELECT * FROM data";
+                MySqlCommand cmdSel = new MySqlCommand(sql, connection);
+                DataTable dt = new DataTable();
+                MySqlDataAdapter da = new MySqlDataAdapter(cmdSel);
+                da.Fill(dt);
+                dataGrid.DataContext = dt;
+                dataGrid.IsReadOnly = true;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void UtilizeState(object state)

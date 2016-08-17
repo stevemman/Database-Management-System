@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
 
 namespace WPFPageSwitch
 {
@@ -22,6 +23,7 @@ namespace WPFPageSwitch
     public partial class DatabaseEntry : UserControl, ISwitchable
     {
         WPFPageSwitch.MainWindow mw;
+        private MySqlConnection conn;
 
         public DatabaseEntry(WPFPageSwitch.MainWindow mw)
         {
@@ -36,16 +38,17 @@ namespace WPFPageSwitch
 
         private void newEntry()
         {
-            string connectionString = "Data Source=127.0.0.1;" +
-                                      "Initial Catalog=watehole;" +
-                                      "User id=root;" +
-                                      "Password=;";
+            string myConnectionString = "server=127.0.0.1;uid=admin;" +
+                "pwd=;database=waterhole;";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand("INSERT INTO data (pn, station, qty, isLastStation) VALUES (@pn, @station, @qty, @ils)");
+                conn = new MySql.Data.MySqlClient.MySqlConnection();
+                conn.ConnectionString = myConnectionString;
+               
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO data (pn, station, qty, isLastStation) VALUES (@pn, @station, @qty, @ils)");
                 cmd.CommandType = CommandType.Text;
-                cmd.Connection = connection;
+                cmd.Connection = conn;
                 cmd.Parameters.AddWithValue("@pn", Pn.Text);
                 cmd.Parameters.AddWithValue("@station", mw.Station);
                 cmd.Parameters.AddWithValue("@qty", Int32.Parse(Qty.Text));
@@ -57,15 +60,54 @@ namespace WPFPageSwitch
                 {
                     cmd.Parameters.AddWithValue("@ils", false);
                 }
-                if (connection.State != ConnectionState.Open) { connection.Open(); }
+                if (conn.State != ConnectionState.Open) { conn.Open(); }
                 cmd.ExecuteNonQuery();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private bool checkIfEmpty()
+        {
+            if (string.IsNullOrWhiteSpace(Pn.Text) || string.IsNullOrWhiteSpace(Qty.Text))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool checkIfCorrectType()
+        {
+            if (!checkIfEmpty())
+            {
+                try
+                {
+                    Int32.Parse(Qty.Text);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
             }
         }
 
         private void button_OK_Click(object sender, RoutedEventArgs e)
         {
-            newEntry();
-            Switcher.Switch(mw);
+            if (!checkIfEmpty() && checkIfCorrectType())
+            {
+                newEntry();
+                Switcher.Switch(mw);
+            }
         }
 
         private void button_Back_Click(object sender, RoutedEventArgs e)

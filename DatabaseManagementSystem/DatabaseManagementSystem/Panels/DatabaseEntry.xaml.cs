@@ -24,6 +24,7 @@ namespace WPFPageSwitch
     {
         WPFPageSwitch.MainWindow mw;
         private MySqlConnection conn;
+        private string myConnectionString = "server=127.0.0.1;uid=admin;" + "pwd=;database=waterhole;";
 
         public DatabaseEntry(WPFPageSwitch.MainWindow mw)
         {
@@ -38,28 +39,18 @@ namespace WPFPageSwitch
 
         private void newEntry()
         {
-            string myConnectionString = "server=127.0.0.1;uid=admin;" +
-                "pwd=;database=waterhole;";
-
             try
             {
                 conn = new MySql.Data.MySqlClient.MySqlConnection();
                 conn.ConnectionString = myConnectionString;
                
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO data (pn, station, qty, isLastStation) VALUES (@pn, @station, @qty, @ils)");
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO data (pn, station, qty) VALUES (@pn, @station, @qty)");
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = conn;
                 cmd.Parameters.AddWithValue("@pn", Pn.Text);
                 cmd.Parameters.AddWithValue("@station", mw.Station);
                 cmd.Parameters.AddWithValue("@qty", Int32.Parse(Qty.Text));
-                if (Ils.IsChecked ?? false)
-                {
-                    cmd.Parameters.AddWithValue("@ils", true);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@ils", false);
-                }
+            
                 if (conn.State != ConnectionState.Open) { conn.Open(); }
                 cmd.ExecuteNonQuery();
             }
@@ -67,6 +58,16 @@ namespace WPFPageSwitch
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void initComboBox()
+        {
+            conn = new MySql.Data.MySqlClient.MySqlConnection();
+            conn.ConnectionString = myConnectionString;
+
+            MySqlCommand cmd = new MySqlCommand("SELECT pn FROM pn");
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
         }
 
         private bool checkIfEmpty()

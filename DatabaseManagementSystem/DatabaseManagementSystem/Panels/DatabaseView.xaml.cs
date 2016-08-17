@@ -27,11 +27,11 @@ namespace WPFPageSwitch
         public DatabaseView( WPFPageSwitch.MainWindow mw )
         {
             InitializeComponent();
-            View();
             this.mw = mw;
+            View("SELECT * FROM (SELECT id, pn, station, SUM(qty) as qty, isLastStation, timestamp FROM data AS A GROUP BY station, pn) AS te WHERE station = '" + mw.Station + "'");
         }
 
-        private void View()
+        private void View( String sql )
         {
             string myConnectionString = "server=127.0.0.1;uid=admin;" +
                 "pwd=;database=waterhole;";
@@ -39,7 +39,6 @@ namespace WPFPageSwitch
             {
                 MySqlConnection connection = new MySqlConnection(myConnectionString);
 
-                string sql = "SELECT * FROM data";
                 MySqlCommand cmdSel = new MySqlCommand(sql, connection);
                 DataTable dt = new DataTable();
                 MySqlDataAdapter da = new MySqlDataAdapter(cmdSel);
@@ -61,6 +60,16 @@ namespace WPFPageSwitch
         private void button_Back_Click(object sender, RoutedEventArgs e)
         {
             Switcher.Switch(mw);
+        }
+
+        private void checkBox_Checked(object sender, RoutedEventArgs e)
+        {
+            View("SELECT * FROM data");
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            View("SELECT * FROM (SELECT id, pn, station, SUM(qty) as qty, isLastStation, timestamp FROM data AS A GROUP BY station, pn) AS te WHERE station = '" + mw.Station + "'");
         }
     }
 }

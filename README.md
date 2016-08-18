@@ -10,4 +10,4 @@ The first version of the app is complete, all the basic functionality is present
   -- Added Administrator mode in StationSelector so that it is possible to input new PN's to the Database.
   -- Changed background colors for all the windows.
   -- Changed the way isLastStation is calculated.
-  -- Added a new table to the database to calculate lastStation dynamically.
+  -- Added a new table to the database to calculate lastStation dynamically .

@@ -1,5 +1,6 @@
 ﻿<Window x:Class="WPFPageSwitch.PageSwitcher"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="WPF Page Switch" Height="638" Width="816" ResizeMode="NoResize">
+    Title="Database Management System" Height="638" Width="816" ResizeMode="NoResize"
+    Icon="/Images/dbmsicon.png">
 </Window>

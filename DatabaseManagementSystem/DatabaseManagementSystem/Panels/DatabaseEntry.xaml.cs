@@ -24,11 +24,12 @@ namespace WPFPageSwitch
     {
         WPFPageSwitch.MainWindow mw;
         private MySqlConnection conn;
-        private string myConnectionString = "server=127.0.0.1;uid=admin;" + "pwd=;database=waterhole;";
+        private string myConnectionString = "server=127.0.0.1;uid=admin;pwd=;database=waterhole;";
 
         public DatabaseEntry(WPFPageSwitch.MainWindow mw)
         {
             InitializeComponent();
+            InitComboBox();
             this.mw = mw;
         }
 
@@ -39,18 +40,51 @@ namespace WPFPageSwitch
 
         private void newEntry()
         {
+            String lastStation;
+
             try
             {
                 conn = new MySql.Data.MySqlClient.MySqlConnection();
                 conn.ConnectionString = myConnectionString;
-               
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO data (pn, station, qty) VALUES (@pn, @station, @qty)");
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO data (pn, station, qty, isLastStation) VALUES (@pn, @station, @qty, @isLastStation)");
                 cmd.CommandType = CommandType.Text;
                 cmd.Connection = conn;
                 cmd.Parameters.AddWithValue("@pn", Pn.Text);
                 cmd.Parameters.AddWithValue("@station", mw.Station);
-                cmd.Parameters.AddWithValue("@qty", Int32.Parse(Qty.Text));
-            
+                if (radioButton_Dispatch.IsChecked == true)
+                {
+                    cmd.Parameters.AddWithValue("@qty", Int32.Parse(Qty.Text) * -1);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@qty", Int32.Parse(Qty.Text));
+                }
+
+                String sql = "SELECT lastStation FROM pn WHERE pn='" + Pn.Text + "'";
+                MySqlCommand cmdSel = new MySqlCommand(sql, conn);
+                DataSet ds = new DataSet();
+                MySqlDataAdapter da = new MySqlDataAdapter(cmdSel);
+                da.Fill(ds);
+
+                if (ds.Tables[0].Rows.Count != 0)
+                {
+                    lastStation = ds.Tables[0].Rows[0]["lastStation"].ToString();
+
+                    if (lastStation.Equals(mw.Station))
+                    {
+                        cmd.Parameters.AddWithValue("@isLastStation", true);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@isLastStation", false);
+                    }
+                }
+                else
+                {
+                    return;
+                }
+
                 if (conn.State != ConnectionState.Open) { conn.Open(); }
                 cmd.ExecuteNonQuery();
             }
@@ -60,14 +94,23 @@ namespace WPFPageSwitch
             }
         }
 
-        private void initComboBox()
+        private void InitComboBox()
         {
-            conn = new MySql.Data.MySqlClient.MySqlConnection();
-            conn.ConnectionString = myConnectionString;
+            string query = "SELECT pn, lastStation FROM pn";
+            MySqlConnection conn = new MySqlConnection(myConnectionString);
+            MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
 
-            MySqlCommand cmd = new MySqlCommand("SELECT pn FROM pn");
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conn;
+            conn.Open();
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Part No");
+
+            
+
+            foreach ( DataRow dr in ds.Tables[0].Rows )
+            {
+                comboBox1.Items.Add(dr["pn"]);
+            }
+            
         }
 
         private bool checkIfEmpty()
@@ -114,6 +157,33 @@ namespace WPFPageSwitch
         private void button_Back_Click(object sender, RoutedEventArgs e)
         {
             Switcher.Switch(mw);
+        }
+
+        private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (comboBox1.SelectedIndex == -1)
+            {
+                Pn.Text = string.Empty;
+            }
+            else {
+                Pn.Text = comboBox1.SelectedItem.ToString();
+            }
+        }
+
+        private void radioButton_Insert_Checked(object sender, RoutedEventArgs e)
+        {
+            if (radioButton_Dispatch.IsChecked == true)
+            {
+                radioButton_Dispatch.IsChecked = false;
+            }
+        }
+
+        private void radioButton_Dispatch_Checked(object sender, RoutedEventArgs e)
+        {
+            if (radioButton_Insert.IsChecked == true)
+            {
+                radioButton_Insert.IsChecked = false;
+            }
         }
     }
 }

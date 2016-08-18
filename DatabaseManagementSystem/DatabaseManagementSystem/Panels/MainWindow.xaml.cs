@@ -19,6 +19,7 @@ namespace WPFPageSwitch
     {
         public MySql.Data.MySqlClient.MySqlConnection conn;
         public String Station;
+        public String Connection;
 
         public MainWindow()
         {
@@ -64,6 +65,7 @@ namespace WPFPageSwitch
 
         private void SetConnection(string v)
         {
+            Connection = v;
             ConnectionStatus.Text = "Connection | " + v;
         }
 

@@ -23,11 +23,12 @@ namespace WPFPageSwitch
     {
         WPFPageSwitch.MainWindow mw;
        
-
         public DatabaseView( WPFPageSwitch.MainWindow mw )
         {
             InitializeComponent();
             this.mw = mw;
+            SelectedStation.Text = "Station | " + mw.Station;
+            ConnectionStatus.Text = "Connection | " + mw.Connection;
             View("SELECT * FROM (SELECT id, pn, station, SUM(qty) as qty, isLastStation, timestamp FROM data AS A GROUP BY station, pn) AS te WHERE station = '" + mw.Station + "'");
         }
 

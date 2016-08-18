@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         d:DesignWidth="640" d:DesignHeight="480" Width="800" Height="600">
-    <Grid Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}">
-        <Button x:Name="button_Laser" Content="Laser" HorizontalAlignment="Left" Margin="280,240,0,0" Width="240" FontFamily="Microsoft JhengHei UI" FontSize="29.333" Click="button_Laser_Click" Height="100" VerticalAlignment="Top"/>
-        <Button x:Name="button_3DPrinter" Content="3DPrinter" HorizontalAlignment="Left" Margin="280,400,0,100" Width="240" FontFamily="Microsoft JhengHei UI" FontSize="29.333" Click="button_3DPrinter_Click"/>
-        <Button x:Name="button_Back" Content="Back" HorizontalAlignment="Left" Margin="280,80,0,0" VerticalAlignment="Top" Width="240" Height="100" FontFamily="Microsoft JhengHei UI" FontSize="29.333" Click="button_Back_Click"/>
+    <Grid Background="#FF29526D">
+        <Button x:Name="button_Laser" Content="Laser" Margin="300,185,300,0" FontFamily="Microsoft JhengHei UI" FontSize="29.333" Click="button_Laser_Click" Height="80" VerticalAlignment="Top" Background="#FF708FA3"/>
+        <Button x:Name="button_3DPrinter" Content="3DPrinter" Margin="300,325,300,195" FontFamily="Microsoft JhengHei UI" FontSize="29.333" Click="button_3DPrinter_Click" Background="#FF708FA3"/>
+        <Button x:Name="button_Back" Content="Back" Margin="300,45,300,475" FontFamily="Microsoft JhengHei UI" FontSize="29.333" Click="button_Back_Click" Background="#FF708FA3"/>
+        <Button x:Name="button_Administrator" Content="Administrator&#xD;&#xA;" Margin="300,465,300,55" FontFamily="Microsoft JhengHei UI" FontSize="29.333" Click="button_Administrator_Click" Background="#FF708FA3"/>
     </Grid>
 </UserControl>

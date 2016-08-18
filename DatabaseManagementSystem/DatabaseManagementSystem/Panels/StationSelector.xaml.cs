@@ -48,5 +48,10 @@ namespace WPFPageSwitch
         {
             Switcher.Switch(mw);
         }
+
+        private void button_Administrator_Click(object sender, RoutedEventArgs e)
+        {
+            Switcher.Switch(new Admin(mw));
+        }
     }
 }
